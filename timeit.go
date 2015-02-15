@@ -1,4 +1,4 @@
-// Simple timing package. Given an arbitrary function; measure elapsed time, time spent in user/sys space, and cpu ticks.
+// Simple timing package. Given an arbitrary function; measure total elapsed time, time spent in user/sys space, and cpu ticks.
 package timeit
 
 import (
