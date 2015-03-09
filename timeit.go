@@ -16,11 +16,12 @@ type TimeSpent struct {
 	Elapsed time.Duration
 	User    int64
 	Sys     int64
+    TotalCPU int64
 	Ticks   int64
 }
 
 func logResult(ts *TimeSpent) string {
-	return fmt.Sprintf("Timeit: Elapsed=%s, User=%dus, Sys=%dus, Ticks=%d", ts.Elapsed.String(), ts.User, ts.Sys, ts.Ticks)
+	return fmt.Sprintf("Timeit: Elapsed=%s, User=%d ticks, Sys=%d ticks, TotalCPU=%d ticks, Ticks=%d", ts.Elapsed.String(), ts.User, ts.Sys, ts.TotalCPU, ts.Ticks)
 }
 
 // Simple wrapper. Returns a string.
@@ -81,6 +82,7 @@ func TimeitT2(cb func() (interface{}, interface{})) (*TimeSpent, interface{}, in
 	ts.Elapsed = timePost.Sub(timePre)
 	ts.User = tmsPost.Utime - tmsPre.Utime
 	ts.Sys = tmsPost.Stime - tmsPre.Stime
+    ts.TotalCPU = ts.User + ts.Sys
 	ts.Ticks = int64(ticksPost - ticksPre)
 
 	return ts, r1, r2
