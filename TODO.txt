@@ -1,0 +1,1 @@
+[-] Turn Sys/User/TotalCPU into a Duration. ticks to duration. sysconf(_SC_CLK_TCK)
